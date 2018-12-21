@@ -1,24 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';  
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Hello Rectangle',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Hello Rectangle'),
+        ),
+        body: HelloRectangle(),
+      ),
+    ),
+  );
+}
 
-class MyApp extends StatelessWidget {
+class HelloRectangle extends StatelessWidget {
   @override
-  Widget build(BuildContext content){
-     final wordPair = new WordPair.random();
-      return new MaterialApp(
-        title: "Hello Nam, this is flutter",
-        home: new Scaffold(
-          appBar: new AppBar(
-            title: new Text("Nam Flutter"),
-          
-          ),
-          body: new Center(
-            child: new Text(wordPair.asPascalCase),
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        color: Colors.greenAccent,
+        height: 400.0,
+        width: 300.0,
+        child: Center(
+          child: Text(
+            'Hello!',
+            style: TextStyle(fontSize: 40.0),
+            textAlign: TextAlign.center,
           ),
         ),
-      );
+      ),
+    );
   }
 }
 
