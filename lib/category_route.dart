@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hello_nam/catergory.dart';
+import 'package:hello_nam/unit.dart';
 
 final _backgroundColor = Colors.green[100];
 
@@ -50,10 +51,24 @@ class CategoryRoute extends StatelessWidget {
     Icons.search
   ];
 
+  /// Makes the correct number of rows for the list view.
+  ///
+  /// For portrait, we use a [ListView].
   Widget _buildCategoryWidget(List<Widget> categories) {
     return ListView.builder(
         itemBuilder: (BuildContext context, int index) => categories[index],
         itemCount: categories.length);
+  }
+
+  /// Returns a list of mock [Unit]s.
+  List<Unit> _retrieveUnitList(String category){
+    return List.generate(10, (int i){
+      i += 1;
+      return Unit(
+        name: '$category Unit $i',
+        conversion: i.toDouble()
+      );
+    });
   }
 
   @override
@@ -65,7 +80,8 @@ class CategoryRoute extends StatelessWidget {
       categories.add(Category(
           name: _categoryNames[i],
           color: _baseColors[i],
-          iconLocation: _baseIcons[i]));
+          iconLocation: _baseIcons[i],
+          units: _retrieveUnitList(_categoryNames[i])));
     }
 
     final listView = Container(
