@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello_nam/catergory.dart';
+import 'package:hello_nam/category_route.dart';
 
 
 void main() {
@@ -37,16 +38,7 @@ class UnitConvertApp extends StatelessWidget{
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Unit Converter',
-      home: Scaffold(
-        backgroundColor: Colors.green[100],
-        body: Center(
-          child: Category(
-            name: _categoryName,
-            color: _categoryColor,
-            iconLocation: _categoryIcon,
-          ),
-        ),
-      ),
+      home: CategoryRoute()
     );
   }
 
