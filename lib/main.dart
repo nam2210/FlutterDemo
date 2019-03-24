@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';  
+import 'package:hello_nam/catergory.dart';
+
 
 void main() {
-  runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Hello Rectangle',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Hello Rectangle'),
-        ),
-        body: HelloRectangle(),
-      ),
-    ),
-  );
+  runApp(UnitConvertApp());
 }
 
 class HelloRectangle extends StatelessWidget {
@@ -21,12 +11,12 @@ class HelloRectangle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        color: Colors.greenAccent,
+        color: Colors.grey,
         height: 400.0,
         width: 300.0,
         child: Center(
           child: Text(
-            'Hello!',
+            'Hello Nam!',
             style: TextStyle(fontSize: 40.0),
             textAlign: TextAlign.center,
           ),
@@ -34,6 +24,32 @@ class HelloRectangle extends StatelessWidget {
       ),
     );
   }
+}
+
+const _categoryName = 'Cake';
+const _categoryIcon = Icons.cake;
+const _categoryColor = Colors.green;
+
+class UnitConvertApp extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Unit Converter',
+      home: Scaffold(
+        backgroundColor: Colors.green[100],
+        body: Center(
+          child: Category(
+            name: _categoryName,
+            color: _categoryColor,
+            iconLocation: _categoryIcon,
+          ),
+        ),
+      ),
+    );
+  }
+
 }
 
   
