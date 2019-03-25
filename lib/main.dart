@@ -1,46 +1,59 @@
 import 'package:flutter/material.dart';
-import 'package:hello_nam/catergory.dart';
-import 'package:hello_nam/category_route.dart';
 
 
 void main() {
-  runApp(UnitConvertApp());
+  runApp(MyApp());
 }
 
-class HelloRectangle extends StatelessWidget {
+
+class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        color: Colors.grey,
-        height: 400.0,
-        width: 300.0,
-        child: Center(
-          child: Text(
-            'Hello Nam!',
-            style: TextStyle(fontSize: 40.0),
-            textAlign: TextAlign.center,
-          ),
+    return MaterialApp(
+      home: MyHomePage(),
+    );
+  }
+
+}
+
+class MyHomePage extends StatefulWidget{
+
+  MyHomePage();
+
+  @override
+  State<StatefulWidget> createState() {
+    return _MyHomePageState();
+  }
+}
+
+class _MyHomePageState extends State<MyHomePage>{
+
+  int _counter = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Text(
+              'You have pushed the button this many times:'
+            ),
+            Text(
+              '$_counter'
+            )
+          ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){ setState(() {
+          _counter++;
+        });},
+        child: Icon(Icons.add),
       ),
     );
   }
-}
 
-const _categoryName = 'Cake';
-const _categoryIcon = Icons.cake;
-const _categoryColor = Colors.green;
-
-class UnitConvertApp extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Unit Converter',
-      home: CategoryRoute()
-    );
-  }
 }
 
 
