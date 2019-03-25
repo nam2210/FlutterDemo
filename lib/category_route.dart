@@ -15,8 +15,15 @@ final _backgroundColor = Colors.green[100];
 ///
 /// While it is named CategoryRoute, a more apt name would be CategoryScreen,
 /// because it is responsible for the UI at the route's destination.
-class CategoryRoute extends StatelessWidget {
+class CategoryRoute extends StatefulWidget {
   const CategoryRoute();
+
+  @override
+  _CategoryRouteState createState() => _CategoryRouteState();
+}
+
+class _CategoryRouteState extends State<CategoryRoute> {
+  final _categories = <Category>[];
 
   static const _categoryNames = <String>[
     'Length',
@@ -40,68 +47,59 @@ class CategoryRoute extends StatelessWidget {
     Colors.red,
   ];
 
-  static const _baseIcons = <IconData>[
-    Icons.cake,
-    Icons.add,
-    Icons.home,
-    Icons.access_alarms,
-    Icons.accessibility_new,
-    Icons.backspace,
-    Icons.cached,
-    Icons.search
-  ];
+  @override
+  void initState() {
+    super.initState();
+    for (var i = 0; i < _categoryNames.length; i++) {
+      _categories.add(Category(
+        name: _categoryNames[i],
+        color: _baseColors[i],
+        iconLocation: Icons.cake,
+        units: _retrieveUnitList(_categoryNames[i]),
+      ));
+    }
+  }
 
   /// Makes the correct number of rows for the list view.
   ///
   /// For portrait, we use a [ListView].
-  Widget _buildCategoryWidget(List<Widget> categories) {
+  Widget _buildCategoryWidgets() {
     return ListView.builder(
-        itemBuilder: (BuildContext context, int index) => categories[index],
-        itemCount: categories.length);
+      itemBuilder: (BuildContext context, int index) => _categories[index],
+      itemCount: _categories.length,
+    );
   }
 
   /// Returns a list of mock [Unit]s.
-  List<Unit> _retrieveUnitList(String category){
-    return List.generate(10, (int i){
+  List<Unit> _retrieveUnitList(String categoryName) {
+    return List.generate(10, (int i) {
       i += 1;
       return Unit(
-        name: '$category Unit $i',
-        conversion: i.toDouble()
+        name: '$categoryName Unit $i',
+        conversion: i.toDouble(),
       );
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // from above. Use a placeholder icon, such as `Icons.cake` for each
-    // Category. We'll add custom icons later.
-    final categories = <Category>[];
-    for (var i = 0; i < _categoryNames.length; i++) {
-      categories.add(Category(
-          name: _categoryNames[i],
-          color: _baseColors[i],
-          iconLocation: _baseIcons[i],
-          units: _retrieveUnitList(_categoryNames[i])));
-    }
-
     final listView = Container(
-        color: _backgroundColor,
-        padding: EdgeInsets.all(8.0),
-        child: _buildCategoryWidget(categories),
+      color: _backgroundColor,
+      padding: EdgeInsets.symmetric(horizontal: 8.0),
+      child: _buildCategoryWidgets(),
     );
 
-    // TODO: Create an App Bar
     final appBar = AppBar(
       elevation: 0.0,
-      centerTitle: true,
-      backgroundColor: _backgroundColor,
       title: Text(
         'Unit Converter',
         style: TextStyle(
           color: Colors.black,
-          fontSize: 30.0
+          fontSize: 30.0,
         ),
       ),
+      centerTitle: true,
+      backgroundColor: _backgroundColor,
     );
 
     return Scaffold(

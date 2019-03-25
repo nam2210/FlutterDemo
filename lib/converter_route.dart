@@ -3,7 +3,7 @@ import 'package:meta/meta.dart';
 import 'package:hello_nam/unit.dart';
 
 
-class ConverterRoute extends StatelessWidget{
+class ConverterRoute extends StatefulWidget{
 
   final String name;
   final Color color;
@@ -19,13 +19,20 @@ class ConverterRoute extends StatelessWidget{
      assert(units != null);
 
   @override
+  State<StatefulWidget> createState() {
+    return _ConverterRouteState();
+  }
+}
+
+class _ConverterRouteState extends State<ConverterRoute>{
+
+  @override
   Widget build(BuildContext context) {
-    // Here is just a placeholder for a list of mock units
-    final unitWidgets = units.map((Unit unit){
+    var unitWidgets = widget.units.map((Unit unit){
       return Container(
         margin: EdgeInsets.all(8.0),
         padding: EdgeInsets.all(16.0),
-        color: color,
+        color: widget.color,
         child: Column(
           children: <Widget>[
             Text(
@@ -40,9 +47,11 @@ class ConverterRoute extends StatelessWidget{
         ),
       );
     }).toList();
+
     return ListView(
       children: unitWidgets,
     );
   }
 
 }
+
