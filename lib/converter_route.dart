@@ -21,14 +21,14 @@ class ConverterRoute extends StatefulWidget {
 }
 
 class _ConverterRouteState extends State<ConverterRoute> {
-  // TODO: Set some variables, such as for keeping track of the user's input
+  //Set some variables, such as for keeping track of the user's input
   // value and units
   TextEditingController fahController;
   TextEditingController celController;
   bool _validate = false;
   bool _fahValidate = false;
 
-  // TODO: Determine whether you need to override anything, such as initState()
+  //Determine whether you need to override anything, such as initState()
   @override
   void initState() {
     super.initState();
@@ -36,7 +36,7 @@ class _ConverterRouteState extends State<ConverterRoute> {
     celController = new TextEditingController();
   }
 
-  // TODO: Add other helper functions. We've given you one, _format()
+  //Add other helper functions. We've given you one, _format()
   double _formatToF(double c) {
     return (c * (9 / 5)) + 32;
   }
@@ -49,10 +49,9 @@ class _ConverterRouteState extends State<ConverterRoute> {
     return RegExp(r"^[0-9.]+$").hasMatch(text);
   }
 
+  //build celsius input widget
   @override
   Widget build(BuildContext context) {
-    // TODO: Create the 'input' group of widgets. This is a Column that
-    // includes the input value, and 'from' unit [Dropdown].
     Widget inputWidget = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
@@ -89,11 +88,10 @@ class _ConverterRouteState extends State<ConverterRoute> {
       ],
     );
 
-    // TODO: Create a compare arrows icon.
+    //Create a compare arrows icon.
     Icon arrowIcon = Icon(Icons.import_export);
 
-    // TODO: Create the 'output' group of widgets. This is a Column that
-    // includes the output value, and 'to' unit [Dropdown].
+    //build Fahrenheit input widget
     Widget outputWidget = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
@@ -129,7 +127,7 @@ class _ConverterRouteState extends State<ConverterRoute> {
       ],
     );
 
-    // TODO: Return the input, arrows, and output widgets, wrapped in a Column.
+    //Return the input, arrows, and output widgets, wrapped in a Column.
     Padding convertWidget = Padding(
       padding: EdgeInsets.all(16.0),
       child: Column(
