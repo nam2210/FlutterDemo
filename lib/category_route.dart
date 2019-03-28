@@ -26,7 +26,7 @@ class _CategoryRouteState extends State<CategoryRoute> {
   final _categories = <Category>[];
 
   static const _categoryNames = <String>[
-    'Length',
+    'Temperature',
     'Area',
     'Volume',
     'Mass',
